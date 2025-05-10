@@ -1,0 +1,3 @@
+[submodule "Yuna"]
+	path = Yuna
+	url = https://github.com/SirFischer/Yuna.git
