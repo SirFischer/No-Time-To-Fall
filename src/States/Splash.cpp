@@ -17,6 +17,8 @@ void Splash::Init()
 {
 	// Load resources, initialize variables, etc.
 	mDurationClock.restart();
+	LoadLogo("./assets/img/splash.png");
+
 }
 
 void Splash::Update()
@@ -41,7 +43,20 @@ void Splash::HandleEvents()
 
 void Splash::Render()
 {
-	mWindow->Clear(sf::Color::Black);
-	// Draw splash screen graphics here
+	mWindow->Clear(sf::Color::White);
+	mWindow->Draw(mLogoSprite);
 	mWindow->Render();
+}
+
+void Splash::LoadLogo(const std::string& logoPath)
+{
+	if (!mLogoTexture.loadFromFile(logoPath))
+	{
+		// Handle error
+	}
+	mLogoSprite.setTexture(mLogoTexture);
+	mLogoSprite.setPosition(
+		(mWindow->GetSize().x - mLogoTexture.getSize().x) / 2.f,
+		(mWindow->GetSize().y - mLogoTexture.getSize().y) / 2.f
+	);
 }

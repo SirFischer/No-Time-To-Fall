@@ -56,6 +56,20 @@ build CMakeFiles/No-Time-To-Fall.dir/src/Application.cpp.o: CXX_COMPILER__No-Tim
   OBJECT_DIR = CMakeFiles/No-Time-To-Fall.dir
   OBJECT_FILE_DIR = CMakeFiles/No-Time-To-Fall.dir/src
 
+build CMakeFiles/No-Time-To-Fall.dir/src/Map/Map.cpp.o: CXX_COMPILER__No-Time-To-Fall_unscanned_Debug /home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/src/Map/Map.cpp || cmake_object_order_depends_target_No-Time-To-Fall
+  DEP_FILE = CMakeFiles/No-Time-To-Fall.dir/src/Map/Map.cpp.o.d
+  FLAGS = -Wall -Werror -Wextra -g -g -std=gnu++17
+  INCLUDES = -I"/home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/src/**" -I/home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/Yuna/includes -I/home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/Yuna/mfGUI/include
+  OBJECT_DIR = CMakeFiles/No-Time-To-Fall.dir
+  OBJECT_FILE_DIR = CMakeFiles/No-Time-To-Fall.dir/src/Map
+
+build CMakeFiles/No-Time-To-Fall.dir/src/States/Menu.cpp.o: CXX_COMPILER__No-Time-To-Fall_unscanned_Debug /home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/src/States/Menu.cpp || cmake_object_order_depends_target_No-Time-To-Fall
+  DEP_FILE = CMakeFiles/No-Time-To-Fall.dir/src/States/Menu.cpp.o.d
+  FLAGS = -Wall -Werror -Wextra -g -g -std=gnu++17
+  INCLUDES = -I"/home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/src/**" -I/home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/Yuna/includes -I/home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/Yuna/mfGUI/include
+  OBJECT_DIR = CMakeFiles/No-Time-To-Fall.dir
+  OBJECT_FILE_DIR = CMakeFiles/No-Time-To-Fall.dir/src/States
+
 build CMakeFiles/No-Time-To-Fall.dir/src/States/Splash.cpp.o: CXX_COMPILER__No-Time-To-Fall_unscanned_Debug /home/mfischer/Marek/Work/DeepVertic/Games/No-Time-To-Fall/src/States/Splash.cpp || cmake_object_order_depends_target_No-Time-To-Fall
   DEP_FILE = CMakeFiles/No-Time-To-Fall.dir/src/States/Splash.cpp.o.d
   FLAGS = -Wall -Werror -Wextra -g -g -std=gnu++17
@@ -78,7 +92,7 @@ build CMakeFiles/No-Time-To-Fall.dir/src/main.cpp.o: CXX_COMPILER__No-Time-To-Fa
 #############################################
 # Link the executable No-Time-To-Fall
 
-build No-Time-To-Fall: CXX_EXECUTABLE_LINKER__No-Time-To-Fall_Debug CMakeFiles/No-Time-To-Fall.dir/src/Application.cpp.o CMakeFiles/No-Time-To-Fall.dir/src/States/Splash.cpp.o CMakeFiles/No-Time-To-Fall.dir/src/main.cpp.o | Yuna/libYuna.a Yuna/mfGUI/lib/libMFGUId.a /usr/lib64/libsfml-graphics.so.2.6.2 /usr/lib64/libsfml-window.so.2.6.2 /usr/lib64/libsfml-network.so.2.6.2 /usr/lib64/libsfml-audio.so.2.6.2 /usr/lib64/libsfml-system.so.2.6.2
+build No-Time-To-Fall: CXX_EXECUTABLE_LINKER__No-Time-To-Fall_Debug CMakeFiles/No-Time-To-Fall.dir/src/Application.cpp.o CMakeFiles/No-Time-To-Fall.dir/src/Map/Map.cpp.o CMakeFiles/No-Time-To-Fall.dir/src/States/Menu.cpp.o CMakeFiles/No-Time-To-Fall.dir/src/States/Splash.cpp.o CMakeFiles/No-Time-To-Fall.dir/src/main.cpp.o | Yuna/libYuna.a Yuna/mfGUI/lib/libMFGUId.a /usr/lib64/libsfml-graphics.so.2.6.2 /usr/lib64/libsfml-window.so.2.6.2 /usr/lib64/libsfml-network.so.2.6.2 /usr/lib64/libsfml-audio.so.2.6.2 /usr/lib64/libsfml-system.so.2.6.2
   FLAGS = -Wall -Werror -Wextra -g -g
   LINK_LIBRARIES = Yuna/libYuna.a  Yuna/mfGUI/lib/libMFGUId.a  /usr/lib64/libsfml-graphics.so.2.6.2  /usr/lib64/libsfml-window.so.2.6.2  /usr/lib64/libsfml-network.so.2.6.2  /usr/lib64/libsfml-audio.so.2.6.2  /usr/lib64/libsfml-system.so.2.6.2
   OBJECT_DIR = CMakeFiles/No-Time-To-Fall.dir

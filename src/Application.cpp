@@ -8,7 +8,8 @@ std::unique_ptr<Yuna::Core::State>	stateFactory(uint8_t tID, Yuna::Core::Window*
 			return (std::make_unique<Splash>(tWindow));
 		break;
 		case 1:
-		
+			return (std::make_unique<Menu>(tWindow));
+		break;
 		default:
 		break;
 	}

@@ -1,10 +1,9 @@
 # ninja log v6
-2	673	1746904649482446771	CMakeFiles/No-Time-To-Fall.dir/src/States/Splash.cpp.o	be6a76e865b92226
-671	738	1746904166821721230	No-Time-To-Fall	23be9acc8e2d03b2
-1	667	1746904166152568765	CMakeFiles/No-Time-To-Fall.dir/src/main.cpp.o	628c825dbf8497be
-1	18	1746904718063660698	build.ninja	a827b83b9b77663f
-1	671	1746904166151720290	CMakeFiles/No-Time-To-Fall.dir/src/Application.cpp.o	9864e39b3ddbf8ea
-0	15	1746904718063660698	build.ninja	a827b83b9b77663f
-3	619	1746904718069506864	CMakeFiles/No-Time-To-Fall.dir/src/main.cpp.o	c202fd3c81e5c773
-3	656	1746904718068491936	CMakeFiles/No-Time-To-Fall.dir/src/Application.cpp.o	72e0b61dd346a3c9
-656	734	1746904718721492848	No-Time-To-Fall	f4d5e6402073e154
+2	725	1746988994937121031	CMakeFiles/No-Time-To-Fall.dir/src/States/Splash.cpp.o	be6a76e865b92226
+733	822	1746988909958248654	No-Time-To-Fall	f4d5e6402073e154
+2	703	1746989136901964638	CMakeFiles/No-Time-To-Fall.dir/src/main.cpp.o	c202fd3c81e5c773
+0	15	1746989224759255481	build.ninja	a827b83b9b77663f
+2	758	1746989136900589792	CMakeFiles/No-Time-To-Fall.dir/src/Application.cpp.o	72e0b61dd346a3c9
+2	690	1746989231434894304	CMakeFiles/No-Time-To-Fall.dir/src/States/Menu.cpp.o	60ae77eeabcf05a7
+3	680	1746989258746778556	CMakeFiles/No-Time-To-Fall.dir/src/Map/Map.cpp.o	adc180e037474130
+680	755	1746989259423779605	No-Time-To-Fall	e19fb42e7947b42a

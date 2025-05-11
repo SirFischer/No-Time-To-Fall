@@ -7,6 +7,9 @@ class Splash : public Yuna::Core::State
 		sf::Clock mDurationClock;
 		sf::Time mDuration;
 
+		sf::Texture mLogoTexture;
+		sf::Sprite mLogoSprite;
+
 	public:
 		Splash(Yuna::Core::Window* pWindow);
 		~Splash();
@@ -15,4 +18,6 @@ class Splash : public Yuna::Core::State
 		void Update() override;
 		void HandleEvents() override;
 		void Render() override;
+
+		void LoadLogo(const std::string& logoPath);
 };
