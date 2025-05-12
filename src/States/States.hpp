@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Splash.hpp"
-#include "Menu.hpp"
+#include "Splash/Splash.hpp"
+#include "Menu/Menu.hpp"

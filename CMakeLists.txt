@@ -24,7 +24,7 @@ endif()
 find_package(SFML 2.6.2 REQUIRED COMPONENTS graphics window system network audio)
 
 include_directories(
-	${CMAKE_CURRENT_SOURCE_DIR}/src/**
+	${CMAKE_CURRENT_SOURCE_DIR}/src/*
     ${CMAKE_CURRENT_SOURCE_DIR}/Yuna/includes
     ${CMAKE_CURRENT_SOURCE_DIR}/Yuna/mfGUI/include
 )
