@@ -2,6 +2,9 @@
 Fast paced multiplayer platformer race game
 
 ## Build instructions
+
+Follow the following process in the Yuna/mfGUI and Yuna folder before building the game.
+
 ### Generate ninja build file
 
 ``cmake -G Ninja .``
