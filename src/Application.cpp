@@ -10,6 +10,9 @@ std::unique_ptr<Yuna::Core::State>	stateFactory(uint8_t tID, Yuna::Core::Window*
 		case 1:
 			return (std::make_unique<Menu>(tWindow));
 		break;
+		case 2:
+			return (std::make_unique<Game>(tWindow));
+		break;
 		default:
 		break;
 	}

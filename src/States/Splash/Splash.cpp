@@ -45,7 +45,7 @@ void Splash::Render()
 {
 	mWindow->Clear(sf::Color::White);
 	mWindow->Draw(mLogoSprite);
-	mWindow->Render();
+	mWindow->Display();
 }
 
 void Splash::LoadLogo(const std::string& logoPath)

@@ -46,7 +46,7 @@ void Menu::Render()
 {
 	mWindow->Clear(sf::Color::Black);
 	mf::GUI::Render();
-	mWindow->Render();
+	mWindow->Display();
 }
 
 void Menu::InitPlayButton()
