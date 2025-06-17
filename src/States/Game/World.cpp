@@ -5,8 +5,22 @@ void World::Init() {
 	EntityID testEntity = CreateEntity();
 	AddComponent<TransformComponent>(testEntity, 100.0f, 100.0f);
 	AddComponent<RenderComponent>(testEntity, mResourceManager.LoadTexture("assets/textures/Dog.png"), 50, 50);
-	AddComponent<VelocityComponent>(testEntity, 50.0f, 0.0f);
+	AddComponent<VelocityComponent>(testEntity, 0.0f, 0.0f);
 	AddComponent<InputComponent>(testEntity);
+	AddComponent<GravityComponent>(testEntity, 9.81f, 53.0f);
+	AddComponent<ColliderComponent>(testEntity, sf::FloatRect(0, 0, 64, 64));
+
+
+	//test entity2
+	EntityID testEntity2 = CreateEntity();
+	AddComponent<TransformComponent>(testEntity2, 300.0f, 300.0f);
+	AddComponent<RenderComponent>(testEntity2, mResourceManager.LoadTexture("assets/textures/Dog.png"), 50, 50);
+	AddComponent<VelocityComponent>(testEntity2, 0.0f, 0.0f);
+	AddComponent<GravityComponent>(testEntity, 9.81f, 53.0f);
+	AddComponent<ColliderComponent>(testEntity2, sf::FloatRect(0, 0, 64, 64));
+
+	// Map initialization
+	mMap.LoadMap(mResourceManager, "assets/maps/main.map");
 
 }
 
@@ -26,4 +40,6 @@ void World::Render(Yuna::Core::Window* window) {
 	for (const auto& system : mSystems) {
 		system->Render(window);
 	}
+
+	mMap.Render(window, sf::IntRect(0, 0, window->GetSize().x, window->GetSize().y));
 }

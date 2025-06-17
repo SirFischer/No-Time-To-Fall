@@ -6,6 +6,7 @@
 MovementSystem::MovementSystem(World* world) : mWorld(world) {}
 
 void MovementSystem::Update(float deltaTime) {
+	(void)deltaTime; 
     auto entities = mWorld->GetEntitiesWith<TransformComponent, VelocityComponent>();
     
     for (EntityID entity : entities) {
@@ -13,8 +14,8 @@ void MovementSystem::Update(float deltaTime) {
         auto* velocity = mWorld->GetComponent<VelocityComponent>(entity);
         
         if (transform && velocity) {
-            transform->x += velocity->vx * deltaTime;
-            transform->y += velocity->vy * deltaTime;
+            transform->x += velocity->vx;
+            transform->y += velocity->vy;
         }
     }
 }

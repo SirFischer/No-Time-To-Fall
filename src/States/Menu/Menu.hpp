@@ -5,6 +5,8 @@
 class Menu : public Yuna::Core::State
 {
 	private:
+		Yuna::Core::ResourceManager mResourceManager;
+
 		void InitPlayButton();
 		void InitExitButton();
 		

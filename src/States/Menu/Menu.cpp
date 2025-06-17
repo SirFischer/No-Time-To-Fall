@@ -52,10 +52,10 @@ void Menu::Render()
 void Menu::InitPlayButton()
 {
 	auto playButton = UI::createButton(
+		mResourceManager,
 		"Play",
-		"./assets/fonts/Roboto.ttf",
 		sf::Vector2f(100, 100),
-		sf::Vector2f(200, 50),
+		sf::Vector2f(128, 64),
 		[this]() {
 			mStateAction = Yuna::Core::eStateControls::NEXT_STATE;
 			mNextState = 2;
@@ -68,10 +68,10 @@ void Menu::InitPlayButton()
 void Menu::InitExitButton()
 {
 	auto exitButton = UI::createButton(
+		mResourceManager,
 		"Exit",
-		"./assets/fonts/Roboto.ttf",
 		sf::Vector2f(100, 200),
-		sf::Vector2f(200, 50),
+		sf::Vector2f(128, 64),
 		[this]() {
 			mStateAction = Yuna::Core::eStateControls::EXIT;
 			mNextState = -1;

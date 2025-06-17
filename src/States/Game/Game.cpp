@@ -1,7 +1,6 @@
 #include "Game.hpp"
 
-Game::Game(Yuna::Core::Window* pWindow)
-	: Yuna::Core::State(pWindow)
+Game::Game(Yuna::Core::Window* pWindow) : Yuna::Core::State(pWindow)
 {
 	mStateAction = Yuna::Core::eStateControls::EXIT;
 	mNextState = -1; 
@@ -17,10 +16,19 @@ void Game::Init()
 	mActive = true;
 
 	// Initialize the world
-	mWorld.AddSystem<RenderSystem>(&mWorld);
+	mWorld.AddSystem<InputSystem>(&mWorld, &mEventHandler);
+	mWorld.AddSystem<GravitySystem>(&mWorld);
+	mWorld.AddSystem<EntityCollisionDetectionSystem>(&mWorld);
+	mWorld.AddSystem<MapCollisionDetectionSystem>(&mWorld);
 	mWorld.AddSystem<MovementSystem>(&mWorld);
-	mWorld.AddSystem<InputSystem>(&mWorld);
+	mWorld.AddSystem<RenderSystem>(&mWorld);
 	mWorld.Init();
+
+	// Default key bindings
+	mEventHandler.BindKey(sf::Keyboard::Right, (uint32_t)eAction::MOVE_RIGHT);
+	mEventHandler.BindKey(sf::Keyboard::Left, (uint32_t)eAction::MOVE_LEFT);
+	mEventHandler.BindKey(sf::Keyboard::Up, (uint32_t)eAction::JUMP);
+	mEventHandler.BindKey(sf::Keyboard::Down, (uint32_t)eAction::CROUCH);
 }
 
 void Game::Update()
@@ -39,6 +47,7 @@ void Game::HandleEvents()
 			mActive = false;
 		}
 
+		mEventHandler.HandleEvent(event);
 		mWorld.HandleEvent(event);
 	}
 }

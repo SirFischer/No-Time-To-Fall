@@ -8,6 +8,7 @@
 
 #include "Yuna.hpp"
 #include "Entities/ECS.hpp"
+#include "Map/Map.hpp"
 
 class World {
 private:
@@ -15,8 +16,10 @@ private:
     std::unordered_map<EntityID, ComponentContainer> mEntityComponents;
     std::vector<std::unique_ptr<System>> mSystems;
     std::vector<EntityID> mEntities;
+	Map mMap;
 
 public:
+
     EntityID CreateEntity() {
         EntityID entity = EntityIDGenerator::Generate();
         mEntities.push_back(entity);
@@ -102,4 +105,9 @@ public:
 	void Render(Yuna::Core::Window* window);
 
 	void HandleEvent(const sf::Event& event);
+
+	Map* GetMap() {
+		return &mMap;
+	}
+	
 };

@@ -10,8 +10,13 @@
 #include "Components/VelocityComponent.hpp"
 #include "Components/RenderComponent.hpp"
 #include "Components/InputComponent.hpp"
+#include "Components/GravityComponent.hpp"
+#include "Components/ColliderComponent.hpp"
 
 // Systems
 #include "Systems/RenderSystem.hpp"
 #include "Systems/MovementSystem.hpp"
 #include "Systems/InputSystem.hpp"
+#include "Systems/GravitySystem.hpp"
+#include "Systems/EntityCollisionDetectionSystem.hpp"
+#include "Systems/MapCollisionDetectionSystem.hpp"
