@@ -1,13 +1,14 @@
 #pragma once
 #include "Yuna.hpp"
 #include "Block/Block.hpp"
+#include <unordered_map>
 
 typedef std::vector<std::vector<std::vector<int>>> MapData;
 
 class Map {
 	private:
 		Yuna::Core::ResourceManager*				mResourceManager;
-		std::map<int, Block>				mBlockDefinitions;
+		std::unordered_map<int, Block>				mBlockDefinitions;
 		size_t mTileSize = 64; 
 		MapData mMapData;
 
@@ -18,7 +19,7 @@ class Map {
 		void Render(Yuna::Core::Window *tWindow, sf::IntRect tViewRect);
 
 		MapData *GetMapData() { return &mMapData; };
-		std::map<int, Block>& GetBlockDefinitions() { return mBlockDefinitions; }
+		std::unordered_map<int, Block>& GetBlockDefinitions() { return mBlockDefinitions; }
 		size_t GetTileSize() const { return mTileSize; }
 
 };

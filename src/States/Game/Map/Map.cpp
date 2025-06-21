@@ -75,10 +75,20 @@ void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::stri
 						gposStream >> gridX >> gridY;
 
 						// Ensure the map data is large enough
-						if (gridX >= (int)mMapData.size())
+						if (gridX >= (int)mMapData.size()) {
 							mMapData.resize(gridX + 1);
-						if (gridY >= (int)mMapData[gridX].size())
+							// Reserve capacity for columns to prevent frequent reallocations
+							for (auto& column : mMapData) {
+								column.reserve(100); // Reserve reasonable capacity
+							}
+						}
+						if (gridY >= (int)mMapData[gridX].size()) {
 							mMapData[gridX].resize(gridY + 1);
+							// Reserve capacity for block ID vectors
+							for (auto& cell : mMapData[gridX]) {
+								cell.reserve(4); // Most cells have 1-4 blocks
+							}
+						}
 
 						// Add the block ID to the map data
 						mMapData[gridX][gridY].push_back(blockID);
@@ -112,17 +122,26 @@ void Map::Render(Yuna::Core::Window *tWindow, sf::IntRect tViewRect)
 	
 	for (int i = startX; i < endX; ++i)
 	{
-		const int mapHeight = static_cast<int>(mMapData[i].size());
+		const auto& column = mMapData[i];
+		const int mapHeight = static_cast<int>(column.size());
 		int startY = std::max(0, tViewRect.top);
 		int endY = std::min(mapHeight, tViewRect.top + tViewRect.height);
 		
 		for (int j = startY; j < endY; ++j)
 		{
-			for (const auto& blockID : mMapData[i][j])
+			const auto& blockIDs = column[j];
+			
+			if (blockIDs.empty()) continue;
+			
+			for (const int blockID : blockIDs)
 			{
-				auto& block = mBlockDefinitions[blockID];
-				block.SetPosition(sf::Vector2f(i * block.GetSize().x, j * block.GetSize().y));
-				block.Render(tWindow);
+				auto blockIt = mBlockDefinitions.find(blockID);
+				if (blockIt != mBlockDefinitions.end()) {
+					Block& block = blockIt->second;
+					const sf::Vector2f blockSize = block.GetSize();
+					block.SetPosition(sf::Vector2f(i * blockSize.x, j * blockSize.y));
+					block.Render(tWindow);
+				}
 			}
 		}
 	}
