@@ -17,7 +17,7 @@ void Game::Init()
 
 	// Initialize the camera
 	mCamera.SetSize(sf::Vector2f(mWindow->GetSize()));
-	mCamera.SetZoom(0.8f);
+	// Zoom is now handled by the scaling system
 	auto cameraEntity = mWorld.CreateEntity();
 	mWorld.AddComponent<TransformComponent>(cameraEntity, 0.0f, 0.0f);
 	mWorld.AddComponent<VelocityComponent>(cameraEntity, 0.0f, 0.0f);
@@ -42,6 +42,13 @@ void Game::Init()
 void Game::Update()
 {
 	mWorld.Update(mDeltaTime);
+
+	// FPS
+	if (mFPSClock.getElapsedTime().asSeconds() >= 1.0f)
+	{
+		mFPSClock.restart();
+		std::cout << mFPS << " FPS" << std::endl;
+	}
 }
 
 void Game::HandleEvents()
@@ -53,6 +60,11 @@ void Game::HandleEvents()
 		{
 			mStateAction = Yuna::Core::eStateControls::EXIT;
 			mActive = false;
+		}
+		
+		if (event.type == sf::Event::Resized)
+		{
+			mCamera.SetSize(sf::Vector2f(event.size.width, event.size.height));
 		}
 
 		mEventHandler.HandleEvent(event);

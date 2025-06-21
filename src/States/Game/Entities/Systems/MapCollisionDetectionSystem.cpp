@@ -31,25 +31,31 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 			std::vector<std::pair<sf::FloatRect, float>> collisionTimes;
 
 			auto tiles = map->GetMapData();
-			int tileSize = map->GetTileSize();
+			const int tileSize = static_cast<int>(map->GetTileSize());
+			const int mapWidth = static_cast<int>(tiles->size());
+			
 			int startX = static_cast<int>(transform->x / tileSize) - 3;
 			int startY = static_cast<int>(transform->y / tileSize) - 3;
 			int endX = static_cast<int>(transform->x / tileSize) + 3;
 			int endY = static_cast<int>(transform->y / tileSize) + 3;
 
+			startX = std::max(0, startX);
+			endX = std::min(mapWidth - 1, endX);
+
 			for (int x = startX; x <= endX; ++x) {
-				for (int y = startY; y <= endY; ++y) {
-					if (x < 0 || y < 0 || x >= static_cast<int>(tiles->size()) || y >= static_cast<int>((*tiles)[x].size())) {
-						continue; // Out of bounds
-					}
+				const int mapHeight = static_cast<int>((*tiles)[x].size());
+				int clampedStartY = std::max(0, startY);
+				int clampedEndY = std::min(mapHeight - 1, endY);
+				
+				for (int y = clampedStartY; y <= clampedEndY; ++y) {
 					const auto& tileIDs = (*tiles)[x][y];
 
 					if (tileIDs.empty()) {
-						continue; // No tiles at this position
+						continue;
 					}
 
 					for (int tileID : tileIDs) {
-						auto block = map->GetBlockDefinitions()[tileID];
+						const auto& block = map->GetBlockDefinitions()[tileID];
 
 						if (Yuna::Physics::DynamicRectCollision(collider->boundingBox, rayDir, sf::FloatRect(x * tileSize, y * tileSize, block.GetSize().x, block.GetSize().y), collisionPoint, collisionNormal, collisionTime)) {
 							collisionTimes.push_back(std::pair<sf::FloatRect, float>(sf::FloatRect(x * tileSize, y * tileSize, block.GetSize().x, block.GetSize().y), collisionTime));

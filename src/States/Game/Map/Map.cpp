@@ -106,18 +106,23 @@ void Map::HandleEvents()
 
 void Map::Render(Yuna::Core::Window *tWindow, sf::IntRect tViewRect)
 {
-	for (int i = tViewRect.left; i < tViewRect.left + tViewRect.width; ++i)
+	const int mapWidth = static_cast<int>(mMapData.size());
+	int startX = std::max(0, tViewRect.left);
+	int endX = std::min(mapWidth, tViewRect.left + tViewRect.width);
+	
+	for (int i = startX; i < endX; ++i)
 	{
-		for (int j = tViewRect.top; j < tViewRect.top + tViewRect.height; ++j)
+		const int mapHeight = static_cast<int>(mMapData[i].size());
+		int startY = std::max(0, tViewRect.top);
+		int endY = std::min(mapHeight, tViewRect.top + tViewRect.height);
+		
+		for (int j = startY; j < endY; ++j)
 		{
-			if (i >= 0 && i < (int)mMapData.size() && j >= 0 && j < (int)mMapData[i].size())
+			for (const auto& blockID : mMapData[i][j])
 			{
-				for (const auto& blockID : mMapData[i][j])
-				{
-					auto block = mBlockDefinitions[blockID];
-					block.SetPosition(sf::Vector2f(i * block.GetSize().x, j * block.GetSize().y));
-					block.Render(tWindow);
-				}
+				auto& block = mBlockDefinitions[blockID];
+				block.SetPosition(sf::Vector2f(i * block.GetSize().x, j * block.GetSize().y));
+				block.Render(tWindow);
 			}
 		}
 	}
