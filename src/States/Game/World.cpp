@@ -9,7 +9,7 @@ void World::Init() {
 	AddComponent<InputComponent>(testEntity);
 	AddComponent<GravityComponent>(testEntity, 9.81f, 53.0f);
 	AddComponent<ColliderComponent>(testEntity, sf::FloatRect(0, 0, 64, 64));
-
+	AddComponent<CameraTargetComponent>(testEntity);
 
 	//test entity2
 	EntityID testEntity2 = CreateEntity();

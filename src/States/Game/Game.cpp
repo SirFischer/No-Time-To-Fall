@@ -15,6 +15,13 @@ void Game::Init()
 {
 	mActive = true;
 
+	// Initialize the camera
+	mCamera.SetSize(sf::Vector2f(mWindow->GetSize()));
+	mCamera.SetZoom(0.8f);
+	auto cameraEntity = mWorld.CreateEntity();
+	mWorld.AddComponent<TransformComponent>(cameraEntity, 0.0f, 0.0f);
+	mWorld.AddComponent<VelocityComponent>(cameraEntity, 0.0f, 0.0f);
+
 	// Initialize the world
 	mWorld.AddSystem<InputSystem>(&mWorld, &mEventHandler);
 	mWorld.AddSystem<GravitySystem>(&mWorld);
@@ -22,6 +29,7 @@ void Game::Init()
 	mWorld.AddSystem<MapCollisionDetectionSystem>(&mWorld);
 	mWorld.AddSystem<MovementSystem>(&mWorld);
 	mWorld.AddSystem<RenderSystem>(&mWorld);
+	mWorld.AddSystem<CameraSystem>(&mWorld, &mCamera, cameraEntity);
 	mWorld.Init();
 
 	// Default key bindings
@@ -55,6 +63,7 @@ void Game::HandleEvents()
 void Game::Render()
 {
 	mWindow->Clear(sf::Color::Black);
+	mWindow->SetView(mCamera.GetView());
 	mWorld.Render(mWindow);
 	mWindow->Display();
 }

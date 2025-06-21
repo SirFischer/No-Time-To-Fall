@@ -22,6 +22,7 @@ std::unique_ptr<Yuna::Core::State>	stateFactory(uint8_t tID, Yuna::Core::Window*
 Application::Application()
 {
 	mWindow.SetTitle("No Time To Fall");
+	mWindow.SetSize(sf::Vector2i(1920, 1080));
 	mStateManager.SetStateFactory(stateFactory);
 	mStateManager.SetEntryState(0);
 }

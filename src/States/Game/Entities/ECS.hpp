@@ -12,6 +12,7 @@
 #include "Components/InputComponent.hpp"
 #include "Components/GravityComponent.hpp"
 #include "Components/ColliderComponent.hpp"
+#include "Components/CameraTargetComponent.hpp"
 
 // Systems
 #include "Systems/RenderSystem.hpp"
@@ -20,3 +21,4 @@
 #include "Systems/GravitySystem.hpp"
 #include "Systems/EntityCollisionDetectionSystem.hpp"
 #include "Systems/MapCollisionDetectionSystem.hpp"
+#include "Systems/CameraSystem.hpp"
