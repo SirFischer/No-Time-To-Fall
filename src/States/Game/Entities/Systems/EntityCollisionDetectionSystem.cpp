@@ -26,7 +26,9 @@ void EntityCollisionDetectionSystem::Update(float deltaTime) {
 				if (otherCollider && collider->boundingBox.intersects(otherCollider->boundingBox)) {
 					collider->isTrigger = true;
 					otherCollider->isTrigger = true;
-					std::cout << "Collision detected between entity " << entity << " and entity " << otherEntity << std::endl;
+				} else {
+					collider->isTrigger = false;
+					otherCollider->isTrigger = false;
 				}
 			}
 		}

@@ -75,7 +75,7 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 					velocity->vy += collisionNormal.y * std::abs(velocity->vy) * (1.f - collisionTime);
 					if (collisionNormal.y < 0.f)
 					{
-						velocity->onGround = true; // Assume collision with ground
+						velocity->onGround = true;
 					}
 				}
 			}

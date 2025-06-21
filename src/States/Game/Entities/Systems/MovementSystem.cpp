@@ -16,6 +16,12 @@ void MovementSystem::Update(float deltaTime) {
         if (transform && velocity) {
             transform->x += velocity->vx;
             transform->y += velocity->vy;
+
+			if (velocity->onGround) {
+				velocity->vx *= 0.9f; // Friction
+			} else {
+				velocity->vx *= 0.99f; // Air resistance
+			}
         }
     }
 }
