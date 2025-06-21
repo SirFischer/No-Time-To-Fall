@@ -13,8 +13,7 @@ void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::stri
 	{
 		std::string line;
 		std::getline(file, line);
-		// Process the line to extract block information
-		if (line.empty() || line[0] == '#') // Skip empty lines and comments
+		if (line.empty() || line[0] == '#') // Comment or empty line
 			continue;
 		
 		if (line.find("signature") != std::string::npos)
@@ -30,7 +29,7 @@ void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::stri
 			std::string texturePath = "assets/maps/" + line.substr(line.find(' ', pos + 1) + 1);
 
 			mBlockDefinitions[blockID] = Block();
-			mBlockDefinitions[blockID].SetSize(sf::Vector2f(mTileSize, mTileSize)); // Set default size, can be adjusted later
+			mBlockDefinitions[blockID].SetSize(sf::Vector2f(mTileSize, mTileSize));
 			mBlockDefinitions[blockID].SetTexture(*tResourceManager.LoadTexture(texturePath));
 			continue;
 		}
@@ -74,23 +73,16 @@ void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::stri
 						int gridX, gridY;
 						gposStream >> gridX >> gridY;
 
-						// Ensure the map data is large enough
 						if (gridX >= (int)mMapData.size()) {
 							mMapData.resize(gridX + 1);
-							// Reserve capacity for columns to prevent frequent reallocations
 							for (auto& column : mMapData) {
-								column.reserve(100); // Reserve reasonable capacity
+								column.reserve(50);
 							}
 						}
 						if (gridY >= (int)mMapData[gridX].size()) {
 							mMapData[gridX].resize(gridY + 1);
-							// Reserve capacity for block ID vectors
-							for (auto& cell : mMapData[gridX]) {
-								cell.reserve(4); // Most cells have 1-4 blocks
-							}
 						}
 
-						// Add the block ID to the map data
 						mMapData[gridX][gridY].push_back(blockID);
 					}
 				}
