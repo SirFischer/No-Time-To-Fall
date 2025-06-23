@@ -25,9 +25,10 @@ void Game::Init()
 	// Initialize the world
 	mWorld.AddSystem<InputSystem>(&mWorld, &mEventHandler);
 	mWorld.AddSystem<GravitySystem>(&mWorld);
+	mWorld.AddSystem<MovementSystem>(&mWorld);
 	mWorld.AddSystem<EntityCollisionDetectionSystem>(&mWorld);
 	mWorld.AddSystem<MapCollisionDetectionSystem>(&mWorld);
-	mWorld.AddSystem<MovementSystem>(&mWorld);
+	mWorld.AddSystem<VelocitySystem>(&mWorld);
 	mWorld.AddSystem<RenderSystem>(&mWorld);
 	mWorld.AddSystem<CameraSystem>(&mWorld, &mCamera, cameraEntity);
 	mWorld.Init();

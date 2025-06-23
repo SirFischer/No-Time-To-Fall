@@ -22,3 +22,4 @@
 #include "Systems/EntityCollisionDetectionSystem.hpp"
 #include "Systems/MapCollisionDetectionSystem.hpp"
 #include "Systems/CameraSystem.hpp"
+#include "Systems/VelocitySystem.hpp"

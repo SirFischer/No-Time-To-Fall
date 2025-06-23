@@ -7,39 +7,34 @@
 InputSystem::InputSystem(World* world, Yuna::Core::EventHandler* eventHandler)
 	: mWorld(world), mEventHandler(eventHandler) {}
 
-void InputSystem::Update(float deltaTime) {
+void InputSystem::Update(float deltaTime)
+{
+	(void)deltaTime; // Suppress unused parameter warning
 	auto entities = mWorld->GetEntitiesWith<InputComponent>();
 
-	for (EntityID entity : entities) {
-		auto* velocity = mWorld->GetComponent<VelocityComponent>(entity);
+	for (EntityID entity : entities)
+	{
+		auto* input = mWorld->GetComponent<InputComponent>(entity);
 
-		if (!velocity) {
+		if (!input)
+		{
 			continue;
 		}
 
-		if (mEventHandler->GetEventState((uint32_t)eAction::MOVE_RIGHT)) {
-			velocity->vx += 50.0f * deltaTime;
-		}
+		input->isMovingRight = mEventHandler->GetEventState((uint32_t)eAction::MOVE_RIGHT);
+		input->isMovingLeft = mEventHandler->GetEventState((uint32_t)eAction::MOVE_LEFT);
+		input->isJumping = mEventHandler->GetEventState((uint32_t)eAction::JUMP);
+		input->isCrouching = mEventHandler->GetEventState((uint32_t)eAction::CROUCH);
 
-		if (mEventHandler->GetEventState((uint32_t)eAction::MOVE_LEFT)) {
-			velocity->vx -= 50.0f * deltaTime;
-		}
-
-		if (mEventHandler->GetEventState((uint32_t)eAction::JUMP)) {
-			velocity->vy -= 20.0f * deltaTime;
-		}
-
-		if (mEventHandler->GetEventState((uint32_t)eAction::CROUCH)) {
-			velocity->vy += 20.0f * deltaTime;
-		}
 	}
 }
 
-void InputSystem::HandleEvent(const sf::Event& event) {
+void InputSystem::HandleEvent(const sf::Event& event)
+{
 	(void)event; // Suppress unused parameter warning
 }
 
-bool InputSystem::ShouldProcessEntity(EntityID entity) {
-	return mWorld->HasComponent<InputComponent>(entity) &&
-		   mWorld->HasComponent<VelocityComponent>(entity);
+bool InputSystem::ShouldProcessEntity(EntityID entity)
+{
+	return mWorld->HasComponent<InputComponent>(entity);
 }

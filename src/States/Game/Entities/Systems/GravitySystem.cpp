@@ -12,11 +12,9 @@ void GravitySystem::Update(float deltaTime) {
 		auto* gravity = mWorld->GetComponent<GravityComponent>(entity);
 		auto* velocity = mWorld->GetComponent<VelocityComponent>(entity);
 
-		if (gravity && velocity && !velocity->onGround) {
-			// Apply gravity
+		if (gravity && velocity) {
 			velocity->vy += gravity->gravity * deltaTime;
 
-			// Clamp to terminal velocity
 			if (velocity->vy > gravity->terminalVelocity) {
 				velocity->vy = gravity->terminalVelocity;
 			}

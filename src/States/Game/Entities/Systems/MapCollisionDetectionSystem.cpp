@@ -23,7 +23,7 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 		if (collider && transform && velocity) {
 			collider->boundingBox.left = transform->x;
 			collider->boundingBox.top = transform->y;
-			sf::Vector2f rayDir = sf::Vector2f(velocity->vx, velocity->vy);
+			sf::Vector2f rayDir = sf::Vector2f(velocity->vx * deltaTime, velocity->vy * deltaTime);
 			sf::Vector2f collisionPoint;
 			sf::Vector2f collisionNormal;
 			float collisionTime;
@@ -68,7 +68,7 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 
 			for (auto &collision : collisionTimes)
 			{
-				rayDir = sf::Vector2f(velocity->vx, velocity->vy);
+				rayDir = sf::Vector2f(velocity->vx * deltaTime, velocity->vy * deltaTime);
 				if (Yuna::Physics::DynamicRectCollision(collider->boundingBox, rayDir, collision.first, collisionPoint, collisionNormal, collisionTime))
 				{
 					velocity->vx += collisionNormal.x * std::abs(velocity->vx) * (1.f - collisionTime);
@@ -76,6 +76,7 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 					if (collisionNormal.y < 0.f)
 					{
 						velocity->onGround = true;
+						velocity->vy = 0.f;
 					}
 				}
 			}
