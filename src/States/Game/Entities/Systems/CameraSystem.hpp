@@ -12,7 +12,7 @@ private:
 	Camera* mCamera;
 	EntityID mCameraEntity;
 
-	float mSpeed = 0.1f;
+	float mSpeed = 150.f;
 	float mLinearVelocity = 0.0f;
 	float mActiveAreaRadius = 100.0f; // Radius around the camera target to consider for movement
 

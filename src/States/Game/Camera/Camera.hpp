@@ -9,7 +9,7 @@ private:
 	sf::View mView;
 	sf::Vector2f mPosition = sf::Vector2f(0.0f, 0.0f);
 	sf::Vector2f mSize = sf::Vector2f(1920.0f, 1080.0f);
-	float mZoomLevel = 0.55f;
+	float mZoomLevel = 0.85f;
 	
 	const sf::Vector2f REFERENCE_RESOLUTION = sf::Vector2f(1920.0f, 1080.0f);
 	sf::Vector2f mWindowSize;

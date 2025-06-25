@@ -6,8 +6,9 @@ void World::Init() {
 	AddComponent<TransformComponent>(testEntity, 100.0f, 100.0f);
 	AddComponent<RenderComponent>(testEntity, mResourceManager.LoadTexture("assets/textures/Dog.png"), 50, 50);
 	AddComponent<VelocityComponent>(testEntity, 0.0f, 0.0f);
+	AddComponent<JumpForceComponent>(testEntity);
 	AddComponent<InputComponent>(testEntity);
-	AddComponent<GravityComponent>(testEntity, 98.1f, 530.0f);
+	AddComponent<GravityComponent>(testEntity, 600.f, 2000.0f);
 	AddComponent<ColliderComponent>(testEntity, sf::FloatRect(0, 0, 64, 64));
 	AddComponent<CameraTargetComponent>(testEntity);
 
@@ -16,7 +17,7 @@ void World::Init() {
 	AddComponent<TransformComponent>(testEntity2, 300.0f, 300.0f);
 	AddComponent<RenderComponent>(testEntity2, mResourceManager.LoadTexture("assets/textures/Dog.png"), 50, 50);
 	AddComponent<VelocityComponent>(testEntity2, 0.0f, 0.0f);
-	AddComponent<GravityComponent>(testEntity2, 98.1f, 530.0f);
+	AddComponent<GravityComponent>(testEntity2, 600.f, 2000.0f);
 	AddComponent<ColliderComponent>(testEntity2, sf::FloatRect(0, 0, 64, 64));
 
 	// Map initialization

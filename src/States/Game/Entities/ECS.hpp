@@ -13,6 +13,7 @@
 #include "Components/GravityComponent.hpp"
 #include "Components/ColliderComponent.hpp"
 #include "Components/CameraTargetComponent.hpp"
+#include "Components/JumpForceComponent.hpp"
 
 // Systems
 #include "Systems/RenderSystem.hpp"
