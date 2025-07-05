@@ -17,7 +17,6 @@ void Game::Init()
 
 	// Initialize the camera
 	mCamera.SetSize(sf::Vector2f(mWindow->GetSize()));
-	// Zoom is now handled by the scaling system
 	auto cameraEntity = mWorld.CreateEntity();
 	mWorld.AddComponent<TransformComponent>(cameraEntity, 0.0f, 0.0f);
 	mWorld.AddComponent<VelocityComponent>(cameraEntity, 0.0f, 0.0f);
@@ -31,6 +30,7 @@ void Game::Init()
 	mWorld.AddSystem<VelocitySystem>(&mWorld);
 	mWorld.AddSystem<RenderSystem>(&mWorld);
 	mWorld.AddSystem<CameraSystem>(&mWorld, &mCamera, cameraEntity);
+	mWorld.AddSystem<RespawnSystem>(&mWorld);
 	mWorld.Init();
 
 	// Default key bindings

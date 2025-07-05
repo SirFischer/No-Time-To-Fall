@@ -3,8 +3,9 @@
 #include "Component.hpp"
 
 struct GravityComponent : public Component {
-	float gravity = 9.81f;
-	float terminalVelocity = 53.0f;
+	float gravity = 1100.f;
+	float fallingMultiplier = 1.5f;
+	float terminalVelocity = 2000.0f;
 
 	GravityComponent() = default;
 	GravityComponent(float gravity, float terminalVelocity)

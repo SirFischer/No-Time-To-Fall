@@ -9,7 +9,7 @@ class Map {
 	private:
 		Yuna::Core::ResourceManager*				mResourceManager;
 		std::unordered_map<int, Block>				mBlockDefinitions;
-		size_t mTileSize = 64; 
+		size_t mTileSize = 32; 
 		MapData mMapData;
 
 	public:
@@ -21,5 +21,6 @@ class Map {
 		MapData *GetMapData() { return &mMapData; };
 		std::unordered_map<int, Block>& GetBlockDefinitions() { return mBlockDefinitions; }
 		size_t GetTileSize() const { return mTileSize; }
+		sf::Vector2f GetNearestSafePosition(const sf::Vector2f& tPosition);
 
 };

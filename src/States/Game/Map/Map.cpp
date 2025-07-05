@@ -1,4 +1,6 @@
 #include "Map.hpp"
+#include <cmath>
+#include <algorithm>
 
 
 void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::string& mapFile)
@@ -89,14 +91,31 @@ void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::stri
 			}
 		}
 	}
+}
 
-	for (const auto& blockDef : mBlockDefinitions)
-	{
-		std::cout << "Block ID: " << blockDef.first << std::endl;
-
+sf::Vector2f Map::GetNearestSafePosition(const sf::Vector2f& tPosition)
+{
+	if (mMapData.empty()) {
+		return tPosition;
 	}
 
+	int gridX = static_cast<int>(std::floor(tPosition.x / mTileSize));
+
+	for (int offset = 0; offset < 10; ++offset) {
+		if (gridX - offset >= 0 && gridX - offset < (int)mMapData.size()) {
+			for (int y = 0; y < (int)mMapData[gridX - offset].size(); ++y) {
+				if (!mMapData[gridX - offset][y].empty()) {
+					return (sf::Vector2f((gridX - offset) * mTileSize, (y - 1) * mTileSize));
+				}
+			}
+		}
+	}
+
+	return tPosition;
 }
+
+
+
 
 void Map::Update()
 {
