@@ -13,7 +13,14 @@ Game::~Game()
 
 void Game::Init()
 {
+	auto gameData = GameData::getInstance();
 	mActive = true;
+
+	if (gameData.getIsServer()) {
+		std::cout << "Starting server at " << gameData.getConnectionString() << std::endl;
+	} else {
+		std::cout << "Connecting to server at " << gameData.getConnectionString() << std::endl;
+	}
 
 	// Initialize the camera
 	mCamera.SetSize(sf::Vector2f(mWindow->GetSize()));

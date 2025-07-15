@@ -36,4 +36,44 @@ public:
 
 		return button;
 	}
+
+	static std::shared_ptr<mf::Text> createText(
+		Yuna::Core::ResourceManager& resourceManager,
+		const std::string& text,
+		const sf::Vector2f& position,
+		unsigned int size,
+		const sf::Color& color
+	) {
+
+		auto font = resourceManager.LoadFont("./assets/fonts/Roboto.ttf");
+
+		auto textObject = mf::Text::Create();
+		textObject->GetText()->SetString(text);
+		textObject->GetText()->LoadFont(*font);
+		textObject->GetText()->SetSize(size);
+		textObject->GetText()->SetPos(position);
+		textObject->GetText()->SetColor(color);
+
+		return textObject;
+	}
+
+	static std::shared_ptr<mf::Text> createInputText(
+		Yuna::Core::ResourceManager& resourceManager,
+		const std::string& placeholder,
+		unsigned int size,
+		const sf::Color& color
+	) {
+		auto font = resourceManager.LoadFont("./assets/fonts/Roboto.ttf");
+		auto textObject = mf::Text::Create();
+		textObject->GetText()->SetString(placeholder);
+		textObject->GetText()->LoadFont(*font);
+		textObject->GetText()->SetSize(size);
+		textObject->GetText()->SetColor(color);
+		textObject->GetBackground()->SetOutlineThickness(1);
+		textObject->GetBackground()->SetOutlineColor(sf::Color::White);
+		textObject->EnableEdit();
+
+		return textObject;
+	}
+
 };

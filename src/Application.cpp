@@ -1,4 +1,5 @@
 #include "Application.hpp"
+#include "Core/GameData.hpp"
 
 std::unique_ptr<Yuna::Core::State>	stateFactory(uint8_t tID, Yuna::Core::Window* tWindow)
 {
@@ -11,7 +12,7 @@ std::unique_ptr<Yuna::Core::State>	stateFactory(uint8_t tID, Yuna::Core::Window*
 			return (std::make_unique<Menu>(tWindow));
 		break;
 		case 2:
-			return (std::make_unique<GamemodeMenu>(tWindow));
+			return (std::make_unique<LobbyMenu>(tWindow));
 		case 3:
 			return (std::make_unique<ConnectionMenu>(tWindow));
 		case 4:

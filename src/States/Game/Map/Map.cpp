@@ -53,7 +53,7 @@ void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::stri
 					{
 						throw std::runtime_error("Invalid elem line in map file: " + line);
 					}
-					std::cout << "Processing elem line: " << line << std::endl;
+					
 					int blockID = std::stoi(line.substr(pos + 1));
 
 					if (mBlockDefinitions.find(blockID) == mBlockDefinitions.end())
