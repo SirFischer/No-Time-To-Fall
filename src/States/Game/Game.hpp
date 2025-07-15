@@ -3,6 +3,7 @@
 #include "Entities/ECS.hpp"
 #include "Camera/Camera.hpp"
 #include "World.hpp"
+#include "../../Core/GameData.hpp"
 
 class Game : public Yuna::Core::State
 {
