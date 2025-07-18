@@ -58,7 +58,6 @@ void NetworkSystem::SendInput(EntityID entity)
 
 	if (mNetworkManager->GetMode() == NetworkMode::CLIENT) {
 		mNetworkManager->SendUDPPacket(packet);
-		std::cout << "Client sent input for entity " << entity << ": Right=" << input->isMovingRight << " Left=" << input->isMovingLeft << std::endl;
 	}
 }
 
@@ -70,7 +69,6 @@ void NetworkSystem::ReceiveInput()
 
 	while (mNetworkManager->ReceiveUDPPacket(packet, sender, port) == sf::Socket::Status::Done)
 	{
-		std::cout << "Host received UDP packet from " << sender.toString() << ":" << port << std::endl;
 		
 		int packetType;
 		if (!(packet >> packetType)) {
@@ -94,8 +92,6 @@ void NetworkSystem::ReceiveInput()
 				input->isMovingLeft = isMovingLeft;
 				input->isJumping = isJumping;
 				input->isCrouching = isCrouching;
-				
-				std::cout << "Applied input for entity " << entityId << ": Right=" << isMovingRight << " Left=" << isMovingLeft << std::endl;
 			}
 		}
 	}
@@ -112,8 +108,6 @@ void NetworkSystem::SendWorldState()
 
 	auto entities = mWorld->GetEntitiesWith<TransformComponent, NetworkComponent>();
 	packet << static_cast<uint32_t>(entities.size());
-
-	std::cout << "Sending world state with " << entities.size() << " entities" << std::endl;
 
 	for (EntityID entity : entities) {
 		auto* transform = mWorld->GetComponent<TransformComponent>(entity);
