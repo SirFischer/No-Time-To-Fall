@@ -4,6 +4,7 @@
 #include "Camera/Camera.hpp"
 #include "World.hpp"
 #include "../../Core/GameData.hpp"
+#include "Networking/NetworkManager.hpp"
 
 class Game : public Yuna::Core::State
 {
@@ -11,6 +12,8 @@ class Game : public Yuna::Core::State
 		World mWorld;
 		Camera mCamera;
 		sf::Clock	mFPSClock;
+		NetworkManager mNetworkManager;
+
 
 	public:
 		Game(Yuna::Core::Window* pWindow);

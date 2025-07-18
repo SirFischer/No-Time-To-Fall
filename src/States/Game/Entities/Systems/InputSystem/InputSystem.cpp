@@ -16,8 +16,7 @@ void InputSystem::Update(float deltaTime)
 	{
 		auto* input = mWorld->GetComponent<InputComponent>(entity);
 
-		if (!input)
-		{
+		if (!input->enabled) {
 			continue;
 		}
 

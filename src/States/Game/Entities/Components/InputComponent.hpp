@@ -4,7 +4,9 @@
 
 struct InputComponent : public Component
 {
-	InputComponent() = default;
+	InputComponent(bool enabled) : enabled(enabled) {}
+
+	bool enabled = true;
 
 	bool isMovingRight = false;
 	bool isMovingLeft = false;

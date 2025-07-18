@@ -109,5 +109,7 @@ public:
 	Map* GetMap() {
 		return &mMap;
 	}
+
+	EntityID SpawnPlayer(const sf::Vector2f position, bool isLocalPlayer = false);
 	
 };

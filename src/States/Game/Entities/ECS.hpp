@@ -16,6 +16,7 @@
 #include "Components/JumpForceComponent.hpp"
 #include "Components/MovementSpeedComponent.hpp"
 #include "Components/RespawnComponent.hpp"
+#include "Components/NetworkComponent.hpp"
 
 // Systems
 #include "Systems/RenderSystem/RenderSystem.hpp"
@@ -27,3 +28,4 @@
 #include "Systems/CameraSystem/CameraSystem.hpp"
 #include "Systems/VelocitySystem/VelocitySystem.hpp"
 #include "Systems/RespawnSystem/RespawnSystem.hpp"
+#include "Systems/NetworkSystem/NetworkSystem.hpp"

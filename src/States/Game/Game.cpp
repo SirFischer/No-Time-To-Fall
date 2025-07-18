@@ -8,7 +8,8 @@ Game::Game(Yuna::Core::Window* pWindow) : Yuna::Core::State(pWindow)
 
 Game::~Game()
 {
-	// Destructor implementation
+	// Clean up networking to prevent hanging on shutdown
+	mNetworkManager.Cleanup();
 }
 
 void Game::Init()
@@ -16,12 +17,25 @@ void Game::Init()
 	auto gameData = GameData::getInstance();
 	mActive = true;
 
-	if (gameData.getIsServer()) {
-		std::cout << "Starting server at " << gameData.getConnectionString() << std::endl;
-	} else {
-		std::cout << "Connecting to server at " << gameData.getConnectionString() << std::endl;
+	// Network initialization
+	if (gameData.getIsServer())
+	{
+		mNetworkManager.SetMode(NetworkMode::HOST);
+		mNetworkManager.StartServer(gameData.getServerPort());
+		//main player
+		mWorld.SpawnPlayer(sf::Vector2f(100.0f, 100.0f), true);
+		mWorld.SpawnPlayer(sf::Vector2f(100.0f, 100.0f), false);
+	}
+	else
+	{
+		mNetworkManager.SetMode(NetworkMode::CLIENT);
+		mNetworkManager.ConnectToServer(gameData.getConnectionString(), gameData.getServerPort());
+		mWorld.SpawnPlayer(sf::Vector2f(100.0f, 100.0f), false);
+		mWorld.SpawnPlayer(sf::Vector2f(100.0f, 100.0f), true);
 	}
 
+	
+	
 	// Initialize the camera
 	mCamera.SetSize(sf::Vector2f(mWindow->GetSize()));
 	auto cameraEntity = mWorld.CreateEntity();
@@ -30,11 +44,14 @@ void Game::Init()
 
 	// Initialize the world
 	mWorld.AddSystem<InputSystem>(&mWorld, &mEventHandler);
-	mWorld.AddSystem<GravitySystem>(&mWorld);
+	mWorld.AddSystem<NetworkSystem>(&mWorld, &mNetworkManager);
+	
+	if (gameData.getIsServer()) mWorld.AddSystem<GravitySystem>(&mWorld);
 	mWorld.AddSystem<MovementSystem>(&mWorld);
-	mWorld.AddSystem<EntityCollisionDetectionSystem>(&mWorld);
-	mWorld.AddSystem<MapCollisionDetectionSystem>(&mWorld);
+	if (gameData.getIsServer()) mWorld.AddSystem<EntityCollisionDetectionSystem>(&mWorld);
+	if (gameData.getIsServer()) mWorld.AddSystem<MapCollisionDetectionSystem>(&mWorld);
 	mWorld.AddSystem<VelocitySystem>(&mWorld);
+
 	mWorld.AddSystem<RenderSystem>(&mWorld);
 	mWorld.AddSystem<CameraSystem>(&mWorld, &mCamera, cameraEntity);
 	mWorld.AddSystem<RespawnSystem>(&mWorld);

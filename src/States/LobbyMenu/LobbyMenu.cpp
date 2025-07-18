@@ -139,7 +139,7 @@ void LobbyMenu::ConnectToServer()
 	GameData& gameData = GameData::getInstance();
 	gameData.setServerIP(ipAddress);
 	gameData.setIsServer(false);
-	gameData.setServerPort(7777);
+	gameData.setServerPort(7645);
 	
 	mStateAction = Yuna::Core::eStateControls::REPLACE_STATE;
 	mNextState = 4; // Game state
@@ -151,7 +151,7 @@ void LobbyMenu::StartServer()
 	GameData& gameData = GameData::getInstance();
 	gameData.setServerIP("localhost");
 	gameData.setIsServer(true);
-	gameData.setServerPort(7777);
+	gameData.setServerPort(7645);
 	
 	mStateAction = Yuna::Core::eStateControls::REPLACE_STATE;
 	mNextState = 4; // Game state

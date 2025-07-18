@@ -9,7 +9,7 @@ private:
     bool isServer;
     std::string playerName;
     
-    GameData() : serverIP(""), serverPort(7777), isServer(false), playerName("Player") {}
+    GameData() : serverIP(""), serverPort(7645), isServer(false), playerName("Player") {}
     
 public:
     static GameData& getInstance() {
@@ -35,7 +35,7 @@ public:
     // Clear all data
     void clear() {
         serverIP = "";
-        serverPort = 7777;
+        serverPort = 7645;
         isServer = false;
         playerName = "Player";
     }

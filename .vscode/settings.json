@@ -20,6 +20,7 @@
 	},
 	"peacock.color": "#4a1e3b",
 	"files.associations": {
+		"*.dbclient-js": "javascript",
 		"*.ejs": "html",
 		"*.erd": "json",
 		"*.vuerd": "json",
@@ -83,6 +84,9 @@
 		"typeinfo": "cpp",
 		"variant": "cpp",
 		"chrono": "cpp",
-		"ratio": "cpp"
+		"ratio": "cpp",
+		"queue": "cpp",
+		"ranges": "cpp",
+		"stack": "cpp"
 	}
 }
