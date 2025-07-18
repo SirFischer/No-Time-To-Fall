@@ -42,7 +42,7 @@ public:
     
     // Utility functions
     std::string getConnectionString() const {
-        return serverIP + ":" + std::to_string(serverPort);
+        return serverIP;
     }
     
     bool isValidIP() const {
