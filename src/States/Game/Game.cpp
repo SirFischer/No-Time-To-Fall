@@ -99,7 +99,7 @@ void Game::HandleEvents()
 
 void Game::Render()
 {
-	mWindow->Clear(sf::Color::Black);
+	mWindow->Clear(sf::Color::White);
 	mWindow->SetView(mCamera.GetView());
 	mWorld.Render(mWindow);
 	mWindow->Display();

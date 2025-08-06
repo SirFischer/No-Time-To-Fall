@@ -29,7 +29,7 @@ void World::Render(Yuna::Core::Window* window) {
 EntityID World::SpawnPlayer(const sf::Vector2f position, bool isLocalPlayer) {
 	EntityID playerEntity = CreateEntity();
 	AddComponent<TransformComponent>(playerEntity, position.x, position.y);
-	AddComponent<RenderComponent>(playerEntity, mResourceManager.LoadTexture("assets/textures/blocks/top.png"), 32, 32);
+	AddComponent<RenderComponent>(playerEntity, mResourceManager.LoadTexture(isLocalPlayer ? "assets/textures/player/player.png" : "assets/textures/player/player3.png"), 32, 32);
 	AddComponent<VelocityComponent>(playerEntity, 0.0f, 0.0f);
 	AddComponent<JumpForceComponent>(playerEntity);
 	AddComponent<InputComponent>(playerEntity, isLocalPlayer);
