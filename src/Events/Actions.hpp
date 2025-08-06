@@ -9,8 +9,5 @@ enum class eAction {
 	MOVE_LEFT,
 	JUMP,
 	CROUCH,
-	USE_ITEM_1,
-	USE_ITEM_2,
-	NEXT_ITEM,
-	PREVIOUS_ITEM
+	INTERACT
 };

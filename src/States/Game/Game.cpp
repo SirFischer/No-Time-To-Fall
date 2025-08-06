@@ -58,10 +58,11 @@ void Game::Init()
 	mWorld.Init();
 
 	// Default key bindings
-	mEventHandler.BindKey(sf::Keyboard::Right, (uint32_t)eAction::MOVE_RIGHT);
-	mEventHandler.BindKey(sf::Keyboard::Left, (uint32_t)eAction::MOVE_LEFT);
-	mEventHandler.BindKey(sf::Keyboard::Up, (uint32_t)eAction::JUMP);
-	mEventHandler.BindKey(sf::Keyboard::Down, (uint32_t)eAction::CROUCH);
+	mEventHandler.BindKey(sf::Keyboard::D, (uint32_t)eAction::MOVE_RIGHT);
+	mEventHandler.BindKey(sf::Keyboard::A, (uint32_t)eAction::MOVE_LEFT);
+	mEventHandler.BindKey(sf::Keyboard::W, (uint32_t)eAction::JUMP);
+	mEventHandler.BindKey(sf::Keyboard::S, (uint32_t)eAction::CROUCH);
+	mEventHandler.BindKey(sf::Keyboard::E, (uint32_t)eAction::INTERACT);
 }
 
 void Game::Update()
