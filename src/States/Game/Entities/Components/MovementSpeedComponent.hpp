@@ -8,9 +8,9 @@ struct MovementSpeedComponent : public Component
 
 	bool enabled = true;
 
-	float acceleration = 800.0f;
-	float airbornAcceleration = 200.0f;
-	float maxSpeed = 400.0f;
+	float acceleration = 1000.0f;
+	float airbornAcceleration = 400.0f;
+	float maxSpeed = 250.0f;
 	float airFriction = 0.93f;
 	float groundFriction = 0.83f;
 };

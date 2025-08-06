@@ -36,7 +36,7 @@ EntityID World::SpawnPlayer(const sf::Vector2f position, bool isLocalPlayer) {
 	if (isLocalPlayer) AddComponent<CameraTargetComponent>(playerEntity);
 	AddComponent<GravityComponent>(playerEntity);
 	AddComponent<MovementSpeedComponent>(playerEntity);
-	AddComponent<ColliderComponent>(playerEntity, sf::FloatRect(0, 0, 32, 32));
+	AddComponent<ColliderComponent>(playerEntity, sf::FloatRect(8, 0, 16, 32));
 	AddComponent<NetworkComponent>(playerEntity, EntityIDGenerator::Generate(), isLocalPlayer);
 	AddComponent<RespawnComponent>(playerEntity);
 

@@ -16,9 +16,6 @@ void EntityCollisionDetectionSystem::Update(float deltaTime) {
 		auto* velocity = mWorld->GetComponent<VelocityComponent>(entity);
 
 		if (collider && transform && velocity) {
-			collider->boundingBox.left = transform->x;
-			collider->boundingBox.top = transform->y;
-
 			for (EntityID otherEntity : entities) {
 				if (otherEntity == entity) continue;
 

@@ -21,8 +21,12 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 		auto* velocity = mWorld->GetComponent<VelocityComponent>(entity);
 
 		if (collider && transform && velocity) {
-			collider->boundingBox.left = transform->x;
-			collider->boundingBox.top = transform->y;
+			sf::FloatRect boundingBox(
+				transform->x + collider->boundingBox.left,
+				transform->y + collider->boundingBox.top,
+				collider->boundingBox.width,
+				collider->boundingBox.height
+			);
 			sf::Vector2f rayDir = sf::Vector2f(velocity->vx * deltaTime, velocity->vy * deltaTime);
 			sf::Vector2f collisionPoint;
 			sf::Vector2f collisionNormal;
@@ -57,7 +61,7 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 					for (int tileID : tileIDs) {
 						const auto& block = map->GetBlockDefinitions()[tileID];
 
-						if (Yuna::Physics::DynamicRectCollision(collider->boundingBox, rayDir, sf::FloatRect(x * tileSize, y * tileSize, block.GetSize().x, block.GetSize().y), collisionPoint, collisionNormal, collisionTime)) {
+						if (Yuna::Physics::DynamicRectCollision(boundingBox, rayDir, sf::FloatRect(x * tileSize, y * tileSize, block.GetSize().x, block.GetSize().y), collisionPoint, collisionNormal, collisionTime)) {
 							collisionTimes.push_back(std::pair<sf::FloatRect, float>(sf::FloatRect(x * tileSize, y * tileSize, block.GetSize().x, block.GetSize().y), collisionTime));
 						}
 					}
@@ -69,7 +73,7 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 			for (auto &collision : collisionTimes)
 			{
 				rayDir = sf::Vector2f(velocity->vx * deltaTime, velocity->vy * deltaTime);
-				if (Yuna::Physics::DynamicRectCollision(collider->boundingBox, rayDir, collision.first, collisionPoint, collisionNormal, collisionTime))
+				if (Yuna::Physics::DynamicRectCollision(boundingBox, rayDir, collision.first, collisionPoint, collisionNormal, collisionTime))
 				{
 					velocity->vx += collisionNormal.x * std::abs(velocity->vx) * (1.f - collisionTime);
 					velocity->vy += collisionNormal.y * std::abs(velocity->vy) * (1.f - collisionTime);
