@@ -114,6 +114,42 @@ sf::Vector2f Map::GetNearestSafePosition(const sf::Vector2f& tPosition)
 	return tPosition;
 }
 
+void Map::AddBlock(const Block& tBlock, const sf::Vector2i& tPosition)
+{
+	// Ensure the map data is large enough
+	if (tPosition.x >= (int)mMapData.size()) {
+		mMapData.resize(tPosition.x + 1);
+	}
+	if (tPosition.y >= (int)mMapData[tPosition.x].size()) {
+		mMapData[tPosition.x].resize(tPosition.y + 1);
+	}
+
+	if (!mMapData[tPosition.x][tPosition.y].empty())
+	{
+		// Position is already occupied
+		return;
+	}
+
+	int blockID = -1;
+
+	for(const auto& pair : mBlockDefinitions)
+	{
+		if (tBlock == pair.second)
+		{
+			blockID = pair.first;
+		}
+	}
+
+	if (blockID == -1)
+	{
+		blockID = static_cast<int>(mBlockDefinitions.size());
+		mBlockDefinitions[blockID] = tBlock;
+	}
+
+	mMapData[tPosition.x][tPosition.y].push_back(blockID);
+}
+
+
 
 
 

@@ -24,6 +24,12 @@ void InputSystem::Update(float deltaTime)
 		input->isMovingLeft = mEventHandler->GetEventState((uint32_t)eAction::MOVE_LEFT);
 		input->isJumping = mEventHandler->GetEventState((uint32_t)eAction::JUMP);
 		input->isCrouching = mEventHandler->GetEventState((uint32_t)eAction::CROUCH);
+		input->isPlacingBlock = mEventHandler->GetEventState((uint32_t)eAction::PLACE_BLOCK);
+		input->isPlacingGhostBlock = mEventHandler->GetEventState((uint32_t)eAction::PLACE_GHOST_BLOCK);
+
+		if (input->isPlacingBlock || input->isPlacingGhostBlock) {
+			input->mousePosition = mEventHandler->GetMousePosition();
+		}
 
 	}
 }

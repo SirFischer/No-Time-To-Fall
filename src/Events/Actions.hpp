@@ -9,5 +9,7 @@ enum class eAction {
 	MOVE_LEFT,
 	JUMP,
 	CROUCH,
-	INTERACT
+	INTERACT,
+	PLACE_BLOCK,
+	PLACE_GHOST_BLOCK
 };

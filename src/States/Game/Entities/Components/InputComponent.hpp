@@ -12,4 +12,9 @@ struct InputComponent : public Component
 	bool isMovingLeft = false;
 	bool isJumping = false;
 	bool isCrouching = false;
+
+	bool isPlacingBlock = false;
+	bool isPlacingGhostBlock = false;
+
+	sf::Vector2f mousePosition = {0.0f, 0.0f};
 };

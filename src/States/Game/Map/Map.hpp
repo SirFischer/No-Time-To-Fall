@@ -18,6 +18,8 @@ class Map {
 		void HandleEvents();
 		void Render(Yuna::Core::Window *tWindow, sf::IntRect tViewRect);
 
+		void AddBlock(const Block& tBlock, const sf::Vector2i& tPosition);
+
 		MapData *GetMapData() { return &mMapData; };
 		std::unordered_map<int, Block>& GetBlockDefinitions() { return mBlockDefinitions; }
 		size_t GetTileSize() const { return mTileSize; }

@@ -61,6 +61,10 @@ void MapCollisionDetectionSystem::Update(float deltaTime) {
 					for (int tileID : tileIDs) {
 						const auto& block = map->GetBlockDefinitions()[tileID];
 
+						if (!block.IsSolid()) {
+							continue;
+						}
+
 						if (Yuna::Physics::DynamicRectCollision(boundingBox, rayDir, sf::FloatRect(x * tileSize, y * tileSize, block.GetSize().x, block.GetSize().y), collisionPoint, collisionNormal, collisionTime)) {
 							collisionTimes.push_back(std::pair<sf::FloatRect, float>(sf::FloatRect(x * tileSize, y * tileSize, block.GetSize().x, block.GetSize().y), collisionTime));
 						}

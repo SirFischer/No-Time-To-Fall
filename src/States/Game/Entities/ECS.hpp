@@ -17,6 +17,7 @@
 #include "Components/MovementSpeedComponent.hpp"
 #include "Components/RespawnComponent.hpp"
 #include "Components/NetworkComponent.hpp"
+#include "Components/BlockPlacementComponent.hpp"
 
 // Systems
 #include "Systems/RenderSystem/RenderSystem.hpp"
@@ -29,3 +30,4 @@
 #include "Systems/VelocitySystem/VelocitySystem.hpp"
 #include "Systems/RespawnSystem/RespawnSystem.hpp"
 #include "Systems/NetworkSystem/NetworkSystem.hpp"
+#include "Systems/BlockPlacementSystem/BlockPlacementSystem.hpp"

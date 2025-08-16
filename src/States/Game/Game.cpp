@@ -55,6 +55,7 @@ void Game::Init()
 	mWorld.AddSystem<RenderSystem>(&mWorld);
 	mWorld.AddSystem<CameraSystem>(&mWorld, &mCamera, cameraEntity);
 	mWorld.AddSystem<RespawnSystem>(&mWorld);
+	mWorld.AddSystem<BlockPlacementSystem>(&mWorld);
 	mWorld.Init();
 
 	// Default key bindings
@@ -63,6 +64,8 @@ void Game::Init()
 	mEventHandler.BindKey(sf::Keyboard::W, (uint32_t)eAction::JUMP);
 	mEventHandler.BindKey(sf::Keyboard::S, (uint32_t)eAction::CROUCH);
 	mEventHandler.BindKey(sf::Keyboard::E, (uint32_t)eAction::INTERACT);
+	
+	mEventHandler.BindButton(sf::Mouse::Left, (uint32_t)eAction::PLACE_BLOCK);
 }
 
 void Game::Update()
@@ -100,7 +103,7 @@ void Game::HandleEvents()
 
 void Game::Render()
 {
-	mWindow->Clear(sf::Color::White);
+	mWindow->Clear(sf::Color::Black);
 	mWindow->SetView(mCamera.GetView());
 	mWorld.Render(mWindow);
 	mWindow->Display();

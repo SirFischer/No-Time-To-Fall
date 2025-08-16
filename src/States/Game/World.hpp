@@ -106,9 +106,8 @@ public:
 
 	void HandleEvent(const sf::Event& event);
 
-	Map* GetMap() {
-		return &mMap;
-	}
+	Map* GetMap() { return &mMap; }
+	Yuna::Core::ResourceManager* GetResourceManager() { return &mResourceManager; }
 
 	EntityID SpawnPlayer(const sf::Vector2f position, bool isLocalPlayer = false);
 	
