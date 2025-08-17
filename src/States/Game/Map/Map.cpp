@@ -5,6 +5,7 @@
 
 void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::string& mapFile)
 {
+	mResourceManager = &tResourceManager;
 	std::ifstream file(mapFile);
 	if (!file.is_open())
 	{
@@ -30,9 +31,10 @@ void Map::LoadMap(Yuna::Core::ResourceManager& tResourceManager, const std::stri
 			int blockID = std::stoi(signature);
 			std::string texturePath = "assets/maps/" + line.substr(line.find(' ', pos + 1) + 1);
 
-			mBlockDefinitions[blockID] = Block();
-			mBlockDefinitions[blockID].SetSize(sf::Vector2f(mTileSize, mTileSize));
-			mBlockDefinitions[blockID].SetTexture(*tResourceManager.LoadTexture(texturePath));
+			Block def;
+			def.SetSize(sf::Vector2f(mTileSize, mTileSize));
+			def.SetTexture(*tResourceManager.LoadTexture(texturePath));
+			mBlockDefinitions[blockID] = def;
 			continue;
 		}
 
@@ -116,6 +118,9 @@ sf::Vector2f Map::GetNearestSafePosition(const sf::Vector2f& tPosition)
 
 void Map::AddBlock(const Block& tBlock, const sf::Vector2i& tPosition)
 {
+	if (tPosition.x < 0 || tPosition.y < 0)
+		return;
+
 	// Ensure the map data is large enough
 	if (tPosition.x >= (int)mMapData.size()) {
 		mMapData.resize(tPosition.x + 1);
@@ -126,7 +131,6 @@ void Map::AddBlock(const Block& tBlock, const sf::Vector2i& tPosition)
 
 	if (!mMapData[tPosition.x][tPosition.y].empty())
 	{
-		// Position is already occupied
 		return;
 	}
 
@@ -137,6 +141,7 @@ void Map::AddBlock(const Block& tBlock, const sf::Vector2i& tPosition)
 		if (tBlock == pair.second)
 		{
 			blockID = pair.first;
+			break;
 		}
 	}
 

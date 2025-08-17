@@ -43,7 +43,7 @@ void Game::Init()
 	mWorld.AddComponent<VelocityComponent>(cameraEntity, 0.0f, 0.0f);
 
 	// Initialize the world
-	mWorld.AddSystem<InputSystem>(&mWorld, &mEventHandler);
+	mWorld.AddSystem<InputSystem>(&mWorld, &mEventHandler, mWindow);
 	mWorld.AddSystem<NetworkSystem>(&mWorld, &mNetworkManager);
 	
 	if (gameData.getIsServer()) mWorld.AddSystem<GravitySystem>(&mWorld);
@@ -66,6 +66,7 @@ void Game::Init()
 	mEventHandler.BindKey(sf::Keyboard::E, (uint32_t)eAction::INTERACT);
 	
 	mEventHandler.BindButton(sf::Mouse::Left, (uint32_t)eAction::PLACE_BLOCK);
+	mEventHandler.BindButton(sf::Mouse::Right, (uint32_t)eAction::PLACE_GHOST_BLOCK);
 }
 
 void Game::Update()

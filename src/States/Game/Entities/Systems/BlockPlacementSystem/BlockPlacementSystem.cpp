@@ -21,21 +21,28 @@ void BlockPlacementSystem::Update(float deltaTime) {
 			blockPlacement->currentCooldown -= sf::seconds(deltaTime);
 		}
 
-		if (blockPlacement->currentCooldown <= sf::Time::Zero && input->isPlacingBlock)
+		if (blockPlacement->currentCooldown > sf::Time::Zero || (!input->isPlacingBlock && !input->isPlacingGhostBlock))
 		{
-			// Place the block
-			Block block;
-			block.SetSize(sf::Vector2f(32, 32));
-			block.SetPosition(sf::Vector2f(10, 3));
-			block.SetTexture(*mWorld->GetResourceManager()->LoadTexture("assets/textures/blocks/top.png"));
+			continue;
+		}
 		
-			mWorld->GetMap()->AddBlock(block, sf::Vector2i(10, 3));
-			blockPlacement->currentCooldown = blockPlacement->placementCooldown;
-		} else if (blockPlacement->currentCooldown <= sf::Time::Zero && input->isPlacingGhostBlock)
+		Block block;
+		block.SetSize(sf::Vector2f(32, 32));
+		block.SetTexture(*mWorld->GetResourceManager()->LoadTexture("assets/textures/blocks/top.png"));
+
+		if (input->isPlacingBlock)
 		{
-			// Place the ghost block
+			block.SetSolid(true);
+			blockPlacement->currentCooldown = blockPlacement->placementCooldown;
+		} else if (input->isPlacingGhostBlock)
+		{
+			block.SetSolid(false);
 			blockPlacement->currentCooldown = blockPlacement->ghostPlacementCooldown;
 		}
+
+		mWorld->GetMap()->AddBlock(block, sf::Vector2i(input->worldMousePosition.x / mWorld->GetMap()->GetTileSize(), input->worldMousePosition.y / mWorld->GetMap()->GetTileSize()));
+		input->isPlacingGhostBlock = false;
+		input->isPlacingBlock = false;
 	}
 }
 

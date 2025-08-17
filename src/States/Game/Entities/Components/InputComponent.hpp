@@ -17,4 +17,5 @@ struct InputComponent : public Component
 	bool isPlacingGhostBlock = false;
 
 	sf::Vector2f mousePosition = {0.0f, 0.0f};
+	sf::Vector2f worldMousePosition = {0.0f, 0.0f};
 };

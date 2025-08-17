@@ -14,6 +14,11 @@ class Block
 
 	public:
 		Block() = default;
+		// Special members now implemented in Block.cpp
+		Block(const Block& other);
+		Block(Block&& other) noexcept;
+		Block& operator=(const Block& other);
+		Block& operator=(Block&& other) noexcept;
 		virtual ~Block() = default;
 
 		bool operator==(const Block& other) const;
